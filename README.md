@@ -1,113 +1,38 @@
-# Terraform Module Template
 
-This repository serves as a template for creating Terraform modules. It provides a structured approach to organizing and maintaining Terraform code, along with examples and best practices.
 
-## Table of Contents
+## Requirements
 
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Module Structure](#module-structure)
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4.6 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.65.0 |
 
-## Prerequisites
+## Providers
 
-Before you begin, ensure you have met the following requirements:
+No providers.
 
-1. [install terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-2. [install pre-commit](https://pre-commit.com/#install)
-3. configure pre-commit: `pre-commit install`
-4. install required tools
-   - [tflint](https://github.com/terraform-linters/tflint)
-   - [terraform-docs](https://github.com/terraform-docs/terraform-docs)
+## Modules
 
-## Usage
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_dynamodb_tf_state_lock"></a> [dynamodb\_tf\_state\_lock](#module\_dynamodb\_tf\_state\_lock) | ./modules/dynamodb_table | n/a |
+| <a name="module_tf_state_s3_bucket"></a> [tf\_state\_s3\_bucket](#module\_tf\_state\_s3\_bucket) | ./modules/s3 | n/a |
 
-To use this template, clone the repository and customize it according to your module's requirements. Below is a quick start guide:
+## Resources
 
-1. **Clone the repository:**
+No resources.
 
-   ```sh
-   git clone https://github.com/your-username/terraform-module-template.git
-   cd terraform-module-template
-   ```
-2. **Customize the module:**
+## Inputs
 
-   - Update `main.tf`, `variables.tf`, `outputs.tf`, and `versions.tf` files as needed.
-   - Add your own resources and logic.
-3. **Run Terraform commands:**
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_dynamodb_read_capacity"></a> [dynamodb\_read\_capacity](#input\_dynamodb\_read\_capacity) | (Optional) Number of read units for this table. | `number` | `20` | no |
+| <a name="input_dynamodb_table_name"></a> [dynamodb\_table\_name](#input\_dynamodb\_table\_name) | (Required) Unique Table name within a region name of the table | `string` | n/a | yes |
+| <a name="input_dynamodb_table_tags"></a> [dynamodb\_table\_tags](#input\_dynamodb\_table\_tags) | (Optional) A map of tags to populate on the created table. | `map(string)` | `{}` | no |
+| <a name="input_dynamodb_write_capacity"></a> [dynamodb\_write\_capacity](#input\_dynamodb\_write\_capacity) | (Optional) Number of write units for this table. | `number` | `20` | no |
+| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | Name of the bucket. If omitted, Terraform will assign a random, unique name. | `string` | n/a | yes |
+| <a name="input_s3_bucket_tags"></a> [s3\_bucket\_tags](#input\_s3\_bucket\_tags) | (Optional) Map of tags to assign to the bucket. | `map(string)` | `{}` | no |
 
-   ```sh
-   terraform init
-   terraform plan
-   terraform apply
-   ```
+## Outputs
 
-## Examples
-
-This repository includes example configurations to help you understand how to use the module:
-
-- **Complete Example:** Located in `examples/complete`
-
-  - Demonstrates a full-featured usage of the module.
-
-  ```sh
-  cd examples/complete
-  terraform init
-  terraform apply
-  ```
-- **Minimal Example:** Located in `examples/minimal`
-
-  - Shows a minimal configuration for using the module.
-
-  ```sh
-  cd examples/minimal
-  terraform init
-  terraform apply
-  ```
-
-## Module Structure
-
-The repository is organized as follows:
-
-```plaintext
-.
-├── .editorconfig
-├── examples
-│   ├── complete
-│   │   ├── main.tf
-│   │   ├── outputs.tf
-│   │   ├── provider.tf
-│   │   ├── README.md
-│   │   ├── variables.tf
-│   │   └── versions.tf
-│   └── minimal
-│       ├── main.tf
-│       ├── outputs.tf
-│       ├── provider.tf
-│       ├── README.md
-│       ├── variables.tf
-│       └── versions.tf
-├── .github
-│   └── workflows
-│       ├── documentation.yaml
-│       ├── pre-commit.yaml
-│       └── pr-title.yaml
-├── .gitignore
-├── main.tf
-├── modules
-│   └── sample-resource
-│       ├── main.tf
-│       ├── outputs.tf
-│       ├── variables.tf
-│       └── version.tf
-├── outputs.tf
-├── .pre-commit-config.yaml
-├── README.md
-├── .terraform-docs.yml
-├── tests
-│   ├── examples_minimal.tftest.hcl
-│   └── unit_tests.tftest.hcl
-├── .tflint.hcl
-├── variables.tf
-└── versions.tf
-```
+No outputs.
