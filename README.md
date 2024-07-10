@@ -1,4 +1,29 @@
+# Terraform Module for S3 and DynamoDB for Terraform State Locking
 
+This module creates an S3 bucket and a DynamoDB table, which can be used to store Terraform state files and lock state files to prevent concurrent modifications.
+
+## Usage
+
+To use this module, include it in your Terraform configuration like this:
+
+```hcl
+module "tf_state_backend" {
+  source = "github.com/infraspecdev/terraform-aws-s3-dynamodb-backend?ref=main"
+
+  s3_bucket_name          = "unique-s3-bucket-name"
+  dynamodb_table_name     = "unique_dynamodb_table"
+  dynamodb_read_capacity  = 21
+  dynamodb_write_capacity = 21
+  dynamodb_table_tags = {
+    Environment = "dev"
+    Project     = "backend"
+  }
+  s3_bucket_tags = {
+    Environment = "dev"
+    Project     = "backend"
+  }
+}
+```
 
 ## Requirements
 
