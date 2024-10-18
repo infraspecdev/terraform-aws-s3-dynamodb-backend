@@ -1,4 +1,4 @@
-# Terraform Module for S3 and DynamoDB for Terraform State Locking
+# terraform-aws-s3-dynamodb-backend
 
 This module creates an S3 bucket and a DynamoDB table, which can be used to store Terraform state files and lock state files to prevent concurrent modifications.
 
